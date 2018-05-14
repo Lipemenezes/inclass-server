@@ -36,6 +36,8 @@ REST_FRAMEWORK = {
     )
 }
 
+AUTH_USER_MODEL = 'auth.User'
+
 # Application definition
 
 INSTALLED_APPS = [

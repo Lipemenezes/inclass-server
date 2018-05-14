@@ -5,6 +5,18 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
+
 class Institution(models.Model):
     name = models.CharField(max_length=200, verbose_name='nome')
     register = models.CharField(max_length=14, verbose_name='cnpj')
@@ -69,12 +81,17 @@ class Person(models.Model):
     register = models.CharField(max_length=200, verbose_name='matrícula')
     external_code = models.CharField(max_length=200, verbose_name='código externo')
     is_deleted = models.BooleanField(default=False, null=False)
-    subject = models.OneToOneField(User, null=False)
+    user = models.OneToOneField(User, null=False)
 
     class Meta:
         db_table = 'person'
         verbose_name = 'pessoa'
         verbose_name_plural = 'pessoas'
+        permissions = (
+            ("is_professor", "Has professor permissions"),
+            ("is_student", "Has student permissions"),
+            ("is_admin", "Has administrator permissions"),
+        )
 
 
 class Group(models.Model):
@@ -98,17 +115,6 @@ class Group(models.Model):
         db_table = 'group'
         verbose_name = 'turma'
         verbose_name_plural = 'turmas'
-
-
-class UserType(models.Model):
-    name = models.CharField(max_length=200, verbose_name='nome')
-    is_deleted = models.BooleanField(default=False, null=False)
-    users = models.ManyToManyField(User, related_name='owned_user_types')
-
-    class Meta:
-        db_table = 'user_type'
-        verbose_name = 'tipo de usuário'
-        verbose_name_plural = 'tipos de usuário'
 
 
 class Lecture(models.Model):
