@@ -1,2 +1,4 @@
 django==1.11.13
 djangorestframework==3.8.2
+django-filter==1.1.0
+mysqlclient==1.2.5
