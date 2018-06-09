@@ -6,6 +6,7 @@ from django.db import models
 
 
 from django.conf import settings
+from django.db.models import Sum
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
@@ -76,7 +77,6 @@ class Subject(models.Model):
 
 
 class Person(models.Model):
-    name = models.CharField(max_length=200, verbose_name='nome')
     social_security_number = models.CharField(max_length=200, verbose_name='cpf')
     register = models.CharField(max_length=200, verbose_name='matrícula')
     external_code = models.CharField(max_length=200, verbose_name='código externo')
@@ -135,6 +135,11 @@ class Absence(models.Model):
     is_deleted = models.BooleanField(default=False, null=False)
     lecture = models.ForeignKey(Lecture)
     student = models.ForeignKey(Person)
+
+    @staticmethod
+    def get_total(person, group):
+        Absence.objects.filter(student=person, lecture__group=group).aggregate(Sum('absence_number'))
+        pass
 
     class Meta:
         db_table = 'absence'

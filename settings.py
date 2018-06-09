@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inclass_server',
     'api_inst',
+    'api_mobile',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
