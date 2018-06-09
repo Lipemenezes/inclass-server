@@ -52,14 +52,14 @@ def get_student_data(request):
             })
 
         groups_list.append({
-            'id': group.pk,
+            'group_id': group.pk,
             'name': group.subject.name,
             'workload': group.subject.workload,
             'days_of_the_week': '',
             'instructors': instructors_list,
             'number_of_absences': Absence.get_total(person, group)
         })
-    return JsonResponse({'groups': groups_list})
+    return JsonResponse(groups_list)
 
 
 @api_view(http_method_names=['GET'])
@@ -72,3 +72,22 @@ def get_professor_data(request):
 def get_admin_data(request):
     a = 'teste'
     return JsonResponse({'id': request.GET.get('professor_id')})
+
+
+@api_view(http_method_names=['GET'])
+def get_absences_for_lecture(request):
+    group_id = request.GET['group_id']
+    absences = Absence.objects.filter(student__id=request.user.person.id, lecture__group__id=group_id)
+    absences_list = list()
+    for absence in absences:
+        absences_list.append({
+            'absence_id': absence.pk,
+            'subject': absence.lecture.group.subject.name,
+            'instructor': '{} {}'
+                .format(absence.lecture.instructor.user.first_name, absence.lecture.instructor.user.last_name),
+            'absence_number': absence.absence_number,
+            'date': absence.lecture.date,
+            'has_dispute': absence.has_dispute()
+        })
+
+    return JsonResponse(absences_list)

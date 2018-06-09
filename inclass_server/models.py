@@ -138,8 +138,10 @@ class Absence(models.Model):
 
     @staticmethod
     def get_total(person, group):
-        Absence.objects.filter(student=person, lecture__group=group).aggregate(Sum('absence_number'))
-        pass
+        return Absence.objects.filter(student=person, lecture__group=group).aggregate(Sum('absence_number'))
+
+    def has_dispute(self):
+        return Dispute.objects.filter(absence=self).exists()
 
     class Meta:
         db_table = 'absence'
