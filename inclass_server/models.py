@@ -124,6 +124,27 @@ class Lecture(models.Model):
     group = models.ForeignKey(Group)
     instructor = models.ForeignKey(Person)
 
+    @staticmethod
+    def update_or_create(instructor_id, group_id, date, workload):
+        lecture = Lecture.objects.filter(
+            instructor_id=instructor_id,
+            group_id=group_id,
+            date=date
+        ).first()
+
+        if lecture:
+            lecture.workload = workload
+            lecture.save()
+        else:
+            lecture = Lecture(
+                instructor_id=instructor_id,
+                group_id=group_id,
+                date=date,
+                workload=workload
+            ).save()
+
+        return lecture
+
     class Meta:
         db_table = 'lecture'
         verbose_name = 'aula'
@@ -143,10 +164,30 @@ class Absence(models.Model):
     def has_dispute(self):
         return Dispute.objects.filter(absence=self).exists()
 
+    @staticmethod
+    def update_or_create(lecture_id, student_id, absence_number):
+        absence = Absence.objects.filter(
+            lecture_id=lecture_id,
+            student_id=student_id,
+        ).first()
+
+        if absence:
+            absence.absence_number = absence_number
+            absence.save()
+        else:
+            absence = Absence(
+                lecture_id=lecture_id,
+                student_id=student_id,
+                absence_number=absence_number
+            ).save()
+
+        return absence
+
     class Meta:
         db_table = 'absence'
         verbose_name = 'falta'
         verbose_name_plural = 'faltas'
+        unique_together = (("lecture", "student"),)
 
 
 class Dispute(models.Model):
@@ -160,6 +201,15 @@ class Dispute(models.Model):
     final_absence_number = models.IntegerField()
     is_deleted = models.BooleanField(default=False, null=False)
     absence = models.ForeignKey(Absence)
+
+    def approve(self, final_absence_number):
+        self.status = Dispute.APPROVED
+        self.final_absence_number = final_absence_number
+        self.save()
+
+    def refuse(self):
+        self.status = Dispute.REFUSED
+        self.save()
 
     class Meta:
         db_table = 'dispute'
