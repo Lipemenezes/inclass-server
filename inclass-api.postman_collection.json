@@ -1,0 +1,978 @@
+{
+	"info": {
+		"name": "inclass-api",
+		"_postman_id": "b94bba01-18e2-067d-c0ac-0622166b3b9b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api-inst",
+			"description": "",
+			"item": [
+				{
+					"name": "person",
+					"description": "",
+					"item": [
+						{
+							"name": "list person",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/person",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"person"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "create person",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"person\": [\n\t\t{\n\t\t\t\"social_security_number\": \"123\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"123\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"456\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"maicon\",\n\t\t\t\"last_name\": \"queiroz\",\n\t\t\t\"email\": \"maicon.baitola@live.com\",\n\t\t\t\"external_code\": \"456\",\n\t\t\t\"register\": \"26062018210666\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"789\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"789\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"100\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"100\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": false,\n\t\t\t\"is_professor\": true,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"111\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"111\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"112\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"112\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"113\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"113\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"114\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"114\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"115\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"115\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"116\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"116\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": false,\n\t\t\t\"is_admin\": false\n\t\t},\n\t\t{\n\t\t\t\"social_security_number\": \"117\",\n\t\t\t\"password\": \"abc123456\",\n\t\t\t\"first_name\": \"felipe\",\n\t\t\t\"last_name\": \"menezes\",\n\t\t\t\"email\": \"lipe.menezes@live.com\",\n\t\t\t\"external_code\": \"117\",\n\t\t\t\"register\": \"26062018210635\",\n\t\t\t\"is_student\": true,\n\t\t\t\"is_professor\": true,\n\t\t\t\"is_admin\": false\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/person/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"person",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "delete person",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"person_code\": [\"EC09470236966\"]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/person/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"person",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "course",
+					"description": "",
+					"item": [
+						{
+							"name": "list course",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/course",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"course"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "create course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"courses\": [\n\t\t{\n\t\t\t\"name\": \"Análise e Desenvolvimento de Sistemas\",\n\t\t\t\"initials\": \"ADS\",\n\t\t\t\"external_code\": \"ADS\",\n\t\t\t\"institution_code\": \"24388736000147\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Gestão em TI\",\n\t\t\t\"initials\": \"TGTI\",\n\t\t\t\"external_code\": \"TGTI\",\n\t\t\t\"institution_code\": \"24388736000147\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Processos Gerenciais\",\n\t\t\t\"initials\": \"PG\",\n\t\t\t\"external_code\": \"PG\",\n\t\t\t\"institution_code\": \"24388736000147\"\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/course/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"course",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "delete course",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"external_code\": [\"ADS\"]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/course/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"course",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "subject",
+					"description": "",
+					"item": [
+						{
+							"name": "list course",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/subject",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"subject"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "create course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"subjects\": [\n\t\t{\n\t\t\t\"name\": \"android\",\n\t\t\t\"initials\": \"and\",\n\t\t\t\"external_code\": \"and001\",\n\t\t\t\"courses\": [\"TGTI\", \"ADS\"],\n\t\t\t\"workload\": 160\n\t\t},\n\t\t{\n\t\t\t\"name\": \"web\",\n\t\t\t\"initials\": \"web\",\n\t\t\t\"external_code\": \"web001\",\n\t\t\t\"courses\": [\"TGTI\", \"ADS\"],\n\t\t\t\"workload\": 160\n\t\t},\n\t\t{\n\t\t\t\"name\": \"gestao de processos\",\n\t\t\t\"initials\": \"gp\",\n\t\t\t\"external_code\": \"gp001\",\n\t\t\t\"courses\": [\"PG\"],\n\t\t\t\"workload\": 80\n\t\t}\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/subject/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"subject",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "delete course",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"external_code\": [\"web001\"]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/subject/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"subject",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "group",
+					"description": "",
+					"item": [
+						{
+							"name": "list course",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/group",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"group"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "create course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"groups\": [\n\t\t{\n\t\t\t\"year\": 2018,\n\t\t\t\"day_period\": 0,\n\t\t\t\"semester\": 1,\n\t\t\t\"start_at\": \"2018-02-10\",\n\t\t\t\"end_at\": \"2018-07-10\",\n\t\t\t\"external_code\": \"0_ADS_20181\",\n\t\t\t\"subject_code\": \"and001\",\n\t\t\t\"course_code\": \"ADS\",\n\t\t\t\"monday\": true,\n\t\t\t\"wednesday\": true,\n\t\t\t\"friday\": true,\n\t\t\t\"instructor_code_add\": [\"123\"],\n\t\t\t\"student_code_add\": [\"123\", \"456\", \"789\"]\n\t\t},\n\t\t{\n\t\t\t\"year\": 2018,\n\t\t\t\"day_period\": 0,\n\t\t\t\"semester\": 1,\n\t\t\t\"start_at\": \"2018-02-09\",\n\t\t\t\"end_at\": \"2018-07-15\",\n\t\t\t\"external_code\": \"0_TGTI_20181\",\n\t\t\t\"subject_code\": \"web001\",\n\t\t\t\"course_code\": \"TGTI\",\n\t\t\t\"monday\": true,\n\t\t\t\"tuesday\": true,\n\t\t\t\"instructor_code_add\": [\"123\"],\n\t\t\t\"student_code_add\": [\"112\", \"113\", \"114\"]\n\t\t}\n\t]\n}\n"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/group/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"group",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "delete course",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"external_code\": [\"web001\"]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/person/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"person",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "institution get absences",
+					"description": "",
+					"item": [
+						{
+							"name": "list absences for a lecture",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/absence?lecture_date=2018-06-27&group_external_code=0_ADS_20181",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"absence"
+									],
+									"query": [
+										{
+											"key": "lecture_date",
+											"value": "2018-06-27",
+											"equals": true
+										},
+										{
+											"key": "group_external_code",
+											"value": "0_ADS_20181",
+											"equals": true
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "institution",
+					"description": "",
+					"item": [
+						{
+							"name": "list institution",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/institution",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"institution"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "create institution",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"institution\": {\n\t\t\t\"name\": \"SENAC\",\n\t\t\t\"register\": \"24388736000147\",\n\t\t\t\"street\": \"mauro ramos\",\n\t\t\t\"number\": 999,\n\t\t\t\"city\": \"florianopolis\",\n\t\t\t\"state\": \"SC\",\n\t\t\t\"postal_code\": \"88008008\",\n\t\t\t\"complement\": \"teste\",\n\t\t\t\"external_code\": \"24388736000147\"\n\t\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/inst-api/institution/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"inst-api",
+										"institution",
+										""
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "auth inst",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"abc123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/inst-api/auth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"inst-api",
+								"auth",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api-mobile",
+			"description": "",
+			"item": [
+				{
+					"name": "professor",
+					"description": "",
+					"item": [
+						{
+							"name": "get professor data",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-professor}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}",
+										"disabled": true
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-professor-data",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-professor-data"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "get open dis",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-professor}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/all-disputes-open",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"all-disputes-open"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "get lecture",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-professor}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}",
+										"disabled": true
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-lecture?date=2018-06-27&group_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-lecture"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2018-06-27",
+											"equals": true
+										},
+										{
+											"key": "group_id",
+											"value": "1",
+											"equals": true
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "set lecture",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-professor}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"date\": \"2018-06-27\",\n\t\"group_id\": 1,\n\t\"workload\": 4,\n\t\"students_absences\": [\n\t\t{\n            \"absence_number\": 4,\n            \"student_id\": 1\n        },\n        {\n            \"absence_number\": 5,\n            \"student_id\": 2\n        },\n        {\n            \"absence_number\": 6,\n            \"student_id\": 3\n        }\t\n\t]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/set-lecture",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"set-lecture"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "close dispute",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-professor}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"approved\": true,\n\t\"dispute_id\": 1,\n\t\"final_absence_number\": 1\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/close-dispute",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"close-dispute"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "student",
+					"description": "",
+					"item": [
+						{
+							"name": "get student data",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-student-data",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-student-data"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "get absences for lecture",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-absences-for-lecture?group_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-absences-for-lecture"
+									],
+									"query": [
+										{
+											"key": "group_id",
+											"value": "1",
+											"equals": true
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "get disputes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-disputes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-disputes"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "open dispute",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"absence_id\": 1,\n\t\"message\": \"teste mensagem\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/open-dispute",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"open-dispute"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "auth mobile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "123",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "abc123456",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/mobile-api/auth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"mobile-api",
+								"auth",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
