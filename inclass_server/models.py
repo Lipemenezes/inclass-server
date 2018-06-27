@@ -498,9 +498,12 @@ class Absence(models.Model):
 
     def to_dict(self):
         return {
-            'student': self.student.external_code,
+            'absence_id': self.pk,
+            'subject': self.lecture.group.subject.name,
+            'instructor': self.lecture.instructor.get_full_name(),
             'absence_number': self.absence_number,
-            'lecture': self.lecture_id
+            'date': self.lecture.date,
+            'has_dispute': self.has_dispute()
         }
 
     def has_dispute(self):
