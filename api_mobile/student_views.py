@@ -62,14 +62,15 @@ def open_dispute(request):
     try:
         payload = json.loads(request.body)
         absence = Absence.objects.get(id=payload['absence_id'])
-        Dispute(
-            absence=absence,
-            message=payload['message'],
-            initial_absence_number=absence.absence_number,
-            final_absence_number=absence.absence_number,
-            is_deleted=False,
-            status=Dispute.WAITING
-        ).save()
+        if not absence.has_dispute():
+            Dispute(
+                absence=absence,
+                message=payload['message'],
+                initial_absence_number=absence.absence_number,
+                final_absence_number=absence.absence_number,
+                is_deleted=False,
+                status=Dispute.WAITING
+            ).save()
 
         return JsonResponse({'status': "success"})
     except Exception as e:
@@ -84,10 +85,10 @@ def get_disputes(request):
         for dispute in disputes:
             disputes_list.append({
                 'dispute_id': dispute.pk,
-                'date': dispute.absence.lecture.date,
+                'date': dispute.absence.lecture.date.strftime('%d/%m/%Y'),
                 'initial_absence_number': dispute.initial_absence_number,
                 'final_absence_number': dispute.final_absence_number,
-                'professor': dispute.absence.lecture.instructor,
+                'professor_name': dispute.absence.lecture.instructor.get_full_name(),
                 'status': dispute.status,
                 'message': dispute.message
             })

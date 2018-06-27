@@ -114,34 +114,43 @@ def set_lecture(request):
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 
-@api_view(http_method_names=['GET'])
-def get_open_disputes(request):
-    open_disputes = Dispute.objects.filter(absence__lecture__instructor=request.user.person, status=Dispute.WAITING)
-    dispute_list = list()
-
-    for dispute in open_disputes:
-        dispute_list.append({
-            'student_name': '{} {}'
-                    .format(dispute.absence.student.user.first_name, dispute.absence.student.user.last_name),
-            'subject_name': dispute.absence.lecture.group.subject.name,
-            'date': dispute.absence.lecture.date,
-            'absence_number': dispute.absence.absence_number,
-            'message': dispute.message,
-            'status': dispute.status,
-            'dispute_id': dispute.pk
-        })
-
-    return JsonResponse({'status': "success"})
-
-
 @api_view(http_method_names=['POST'])
 def close_dispute(request):
-    is_approved = request.POST['approved']
-    dispute = Dispute.objects.get(pk=request.POST['dispute_id'])
+    try:
+        payload = json.loads(request.body)
+        is_approved = payload['approved']
+        dispute = Dispute.objects.get(pk=payload['dispute_id'])
 
-    if is_approved:
-        dispute.approve(request.POST['final_absence_number'])
-    else:
-        dispute.refuse()
+        if is_approved:
+            dispute.approve(payload['final_absence_number'])
+        else:
+            dispute.refuse()
 
-    return JsonResponse({'status': "success"})
+        return JsonResponse({'status': "success"})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+
+@api_view(http_method_names=['GET'])
+def get_open_disputes(request):
+    try:
+        open_disputes = Dispute.objects \
+            .filter(absence__lecture__instructor=request.user.person, status=Dispute.WAITING) \
+            .select_related('absence').select_related('absence__student').select_related('absence__lecture')
+
+        dispute_list = list()
+
+        for dispute in open_disputes:
+            dispute_list.append({
+                'student_name': dispute.absence.student.get_full_name(),
+                'subject_name': dispute.absence.lecture.group.subject.name,
+                'date': dispute.absence.lecture.date,
+                'absence_number': dispute.absence.absence_number,
+                'message': dispute.message,
+                'status': dispute.status,
+                'dispute_id': dispute.pk
+            })
+
+        return JsonResponse({'status': "success", 'disputes': dispute_list})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
