@@ -5,7 +5,7 @@ import json
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from inclass_server.models import Group, Absence, Dispute
+from inclass_server.models import Group, Absence, Dispute, SystemConfig
 
 
 @api_view(http_method_names=['GET'])
@@ -31,7 +31,12 @@ def get_student_data(request):
                 'number_of_absences': Absence.get_total(person, group)
             })
 
-        return JsonResponse({'status': 'success', 'groups': groups_list})
+        min_allowed_attendance = SystemConfig.objects.get(config='min_allowed_attendance')
+        return JsonResponse({
+            'status': 'success',
+            'groups': groups_list,
+            'min_allowed_attendance': int(min_allowed_attendance.value)
+        })
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
