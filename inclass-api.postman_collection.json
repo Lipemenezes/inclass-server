@@ -924,6 +924,74 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "admin",
+					"description": "",
+					"item": [
+						{
+							"name": "get configs",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-inst}}"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/get-configs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"get-configs"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "set configs",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token-student}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"config\": \"min_allowed_attendance\",\n\t\"value\": \"75\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/mobile-api/set-configs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"mobile-api",
+										"set-configs"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "auth mobile",
 					"request": {
 						"auth": {
