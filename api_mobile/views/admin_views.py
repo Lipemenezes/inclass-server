@@ -5,7 +5,7 @@ import json
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from inclass_server.models import Group, Absence, Dispute, SystemConfig
+from inclass_server.models import SystemConfig
 
 
 @api_view(http_method_names=['GET'])
