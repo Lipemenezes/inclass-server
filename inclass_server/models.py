@@ -301,6 +301,27 @@ class Group(models.Model):
     saturday = models.BooleanField(default=False, null=False)
     sunday = models.BooleanField(default=False, null=False)
 
+    def get_days_of_the_week_string(self):
+        days_of_the_week_list = []
+
+        if self.monday:
+            days_of_the_week_list.append('Seg')
+        if self.tuesday:
+            days_of_the_week_list.append('Ter')
+        if self.wednesday:
+            days_of_the_week_list.append('Qua')
+        if self.thursday:
+            days_of_the_week_list.append('Qui')
+        if self.friday:
+            days_of_the_week_list.append('Sex')
+        if self.saturday:
+            days_of_the_week_list.append('Sab')
+        if self.sunday:
+            days_of_the_week_list.append('Dom')
+
+        return ', '.join(days_of_the_week_list)
+
+
     def to_dict(self):
         instructors = list()
         for instructor in self.instructors.all().select_related('user'):
@@ -472,7 +493,8 @@ class Absence(models.Model):
 
     @staticmethod
     def get_total(person, group):
-        return Absence.objects.filter(student=person, lecture__group=group).aggregate(Sum('absence_number'))
+        return Absence.objects.filter(student=person, lecture__group=group) \
+            .aggregate(Sum('absence_number'))['absence_number__sum']
 
     def to_dict(self):
         return {

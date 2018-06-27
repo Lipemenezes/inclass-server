@@ -7,26 +7,30 @@ from inclass_server.models import Group, Absence, Dispute
 
 @api_view(http_method_names=['GET'])
 def get_student_data(request):
-    person = request.user.person
-    groups = Group.objects.filter(students=person)
-    groups_list = list()
-    for group in groups:
-        instructors_list = []
-        for instructor in group.instructors:
-            instructors_list.append({
-                'id': instructor.pk,
-                'name': instructor.name,
+    try:
+        person = request.user.person
+        groups = Group.objects.filter(students=person)
+        groups_list = list()
+        for group in groups:
+            instructors_list = []
+            for instructor in group.instructors.all():
+                instructors_list.append({
+                    'id': instructor.pk,
+                    'name': instructor.get_full_name(),
+                })
+
+            groups_list.append({
+                'group_id': group.pk,
+                'name': group.subject.name,
+                'workload': group.subject.workload,
+                'days_of_the_week': group.get_days_of_the_week_string(),
+                'instructors': instructors_list,
+                'number_of_absences': Absence.get_total(person, group)
             })
 
-        groups_list.append({
-            'group_id': group.pk,
-            'name': group.subject.name,
-            'workload': group.subject.workload,
-            'days_of_the_week': '',
-            'instructors': instructors_list,
-            'number_of_absences': Absence.get_total(person, group)
-        })
-    return JsonResponse(groups_list)
+        return JsonResponse({'status': 'success', 'groups': groups_list})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 
 @api_view(http_method_names=['GET'])

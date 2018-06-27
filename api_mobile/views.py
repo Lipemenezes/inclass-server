@@ -25,12 +25,12 @@ def obtain_auth_token(request, *args, **kwargs):
             'is_student': user.has_perm('inclass_server.is_student'),
             'is_professor': user.has_perm('inclass_server.is_professor'),
             'is_admin': user.has_perm('inclass_server.is_admin'),
-            'user_id': user.pk,
-            'name': '{} {}'.format(user.first_name, user.last_name),
+            'name': user.person.get_full_name(),
             'email': user.email,
-            'matricula': user.person.register,
+            'register': user.person.register,
             'institution': Institution.objects.first().name,
-
+            'is_new_password': user.person.is_new_password,
+            'social_security_number': user.person.social_security_number
         })
     else:
         return Response({
