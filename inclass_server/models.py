@@ -109,6 +109,7 @@ class Course(models.Model):
 
     def to_dict(self):
         return {
+            'course_id': self.pk,
             'name': self.name,
             'initials': self.initials,
             'external_code': self.external_code
@@ -291,6 +292,7 @@ class Group(models.Model):
     external_code = models.CharField(max_length=200, verbose_name='código externo')
     is_deleted = models.BooleanField(default=False, null=False)
     subject = models.ForeignKey(Subject, null=False)
+    course = models.ForeignKey(Course, null=False)
     instructors = models.ManyToManyField(Person, db_column='instructors', related_name='instructor_in_groups')
     students = models.ManyToManyField(Person, db_column='students', related_name='member_in_groups')
     monday = models.BooleanField(default=False, null=False)
@@ -320,7 +322,6 @@ class Group(models.Model):
             days_of_the_week_list.append('Dom')
 
         return ', '.join(days_of_the_week_list)
-
 
     def to_dict(self):
         instructors = list()
@@ -353,7 +354,8 @@ class Group(models.Model):
             'saturday': self.saturday,
             'sunday': self.sunday,
             'students': students,
-            'instructors': instructors
+            'instructors': instructors,
+            'course': self.course.to_dict()
         }
 
     @staticmethod
@@ -363,6 +365,7 @@ class Group(models.Model):
         if not group:
             group = Group()
             group.subject = Subject.objects.get(external_code=group_dict.get('subject_code'))
+            group.course = Course.objects.get(external_code=group_dict.get('course_code'))
 
         if group_dict.get('year'):
             group.year = group_dict['year']
@@ -394,6 +397,9 @@ class Group(models.Model):
 
         if group_dict.get('subject_code'):
             group.subject = Subject.objects.filter(external_code=group_dict['subject_code']).first()
+
+        if group_dict.get('course_code'):
+            group.course = Course.objects.filter(external_code=group_dict['course_code']).first()
 
         group.save()
 
