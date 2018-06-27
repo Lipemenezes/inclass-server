@@ -2,7 +2,7 @@ import json
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-
+from datetime import datetime
 from inclass_server.models import Lecture, Absence, Dispute, Group
 
 
@@ -45,57 +45,73 @@ def get_professor_data(request):
 
 @api_view(http_method_names=['GET'])
 def get_lecture(request):
-    date = request.GET['date']
-    lecture = Lecture.objects.filter(
-        instructor_id=request.user.person.pk,
-        group_id=request.GET['group_id'],
-        date=date
-    ).first()
+    try:
+        date = datetime.strptime(request.GET['date'], '%Y-%m-%d')
+        lecture = Lecture.objects.filter(
+            instructor_id=request.user.person.pk,
+            group_id=request.GET['group_id'],
+            date=date
+        ).first()
 
-    group = lecture.group
-    if not group:
-        group = Group.objects.filter(pk=request.GET['group_id']).first()
+        if not lecture:
+            group = Group.objects.filter(pk=request.GET['group_id']).first()
+        else:
+            group = lecture.group
 
-    students_data = dict()
-    for student in group:
-        students_data[student.pk] = {
-            'student_name': student.get_full_name(),
-            'student_id': student.pk,
-            'absence_number': None
-        }
+        students_data = dict()
+        for student in group.students.all().select_related('user'):
+            students_data[student.pk] = {
+                'student_name': student.get_full_name(),
+                'student_id': student.pk,
+                'absence_number': None
+            }
 
-    if lecture:
-        absences = Absence.objects.filter(lecture=lecture)
-        for absence in absences:
-            if absence.student.pk in students_data:
-                students_data[absence.student.pk]['absence_number'] = absence.absence_number
+        workload = None
+        if lecture:
+            absences = Absence.objects.filter(lecture=lecture).select_related('student')
+            for absence in absences:
+                if absence.student.pk in students_data:
+                    students_data[absence.student.pk]['absence_number'] = absence.absence_number
+            workload = lecture.workload
 
-    return JsonResponse({
-        'students_absences': students_data,
-        'workload': lecture.workload
-    })
+        students_list = list()
+        for k, v in students_data.items():
+            students_list.append(v)
+
+        return JsonResponse({
+            'students_absences': students_list,
+            'workload': workload
+        })
+
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 
 @api_view(http_method_names=['POST'])
 def set_lecture(request):
-    date = request.POST['date']
-    lecture = Lecture.update_or_create(
-        instructor_id=request.user.person.pk,
-        group_id=request.POST['group_id'],
-        workload=request.POST['workload'],
-        date=date
-    )
+    try:
+        payload = json.loads(request.body)
+        date = datetime.strptime(payload['date'], '%Y-%m-%d')
 
-    for student_absence in json.loads(request.POST['students_absences']):
-        absence_number = int(student_absence['absence_number'])
-        if absence_number > 0:
-            Absence.update_or_create(
-                lecture_id=lecture.id,
-                student_id=student_absence['student_id'],
-                absence_number=absence_number
-            )
+        lecture = Lecture.update_or_create(
+            instructor_id=request.user.person.pk,
+            group_id=payload['group_id'],
+            workload=payload['workload'],
+            date=date
+        )
 
-    return JsonResponse({'status': "success"})
+        for student_absence in payload['students_absences']:
+            absence_number = student_absence['absence_number']
+            if absence_number > 0:
+                Absence.update_or_create(
+                    lecture_id=lecture.id,
+                    student_id=student_absence['student_id'],
+                    absence_number=absence_number
+                )
+
+        return JsonResponse({'status': "success"})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 
 @api_view(http_method_names=['GET'])

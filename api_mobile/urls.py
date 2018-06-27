@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'open-dispute', student_views.open_dispute, name='open_dispute'),
     url(r'get-disputes', student_views.get_disputes, name='get_student_disputes'),
     url(r'get-professor-data', professor_views.get_professor_data, name='get_professor_data'),
+    url(r'get-lecture', professor_views.get_lecture, name='get_lecture'),
+    url(r'set-lecture', professor_views.set_lecture, name='set_lecture'),
     url(r'get-admin-data', views.get_admin_data, name='get_admin_data'),
 ]
