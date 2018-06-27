@@ -235,6 +235,7 @@ class Person(models.Model):
                 last_name=person_dict['last_name'],
                 email=person_dict['email']
             )
+            person.is_new_password = True
         else:
             user = person.user
 

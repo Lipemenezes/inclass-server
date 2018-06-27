@@ -12,7 +12,9 @@ class GroupAPI(APIView):
 
     def get(self, request):
         try:
-            external_code_list = request.GET.get('external_code').split(',')
+            external_code_list = None
+            if request.GET.get('external_code'):
+                external_code_list = request.GET.get('external_code').split(',')
 
             if not external_code_list:
                 group_queryset = Group.objects.all()
