@@ -21,7 +21,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -48,7 +48,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -84,7 +84,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -126,7 +126,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -153,7 +153,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -188,7 +188,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -230,7 +230,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -257,7 +257,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -292,7 +292,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -334,7 +334,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -361,7 +361,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -396,7 +396,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token 0811a9ad245195d80e015bed10f07bc228187e4b"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -438,7 +438,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -484,7 +484,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									}
 								],
 								"body": {},
@@ -511,7 +511,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Token {{token}}"
+										"value": "Token {{token-inst}}"
 									},
 									{
 										"key": "Content-Type",
@@ -773,7 +773,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"approved\": true,\n\t\"dispute_id\": 1,\n\t\"final_absence_number\": 1\n}"
+									"raw": "{\n\t\"approved\": false,\n\t\"dispute_id\": 1,\n\t\"final_absence_number\": 1\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8000/mobile-api/close-dispute",
@@ -902,7 +902,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"absence_id\": 1,\n\t\"message\": \"teste mensagem\"\n}"
+									"raw": "{\n\t\"absence_id\": 1,\n\t\"message\": \"yyyy\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8000/mobile-api/open-dispute",
