@@ -323,6 +323,13 @@ class Group(models.Model):
             'end_at': self.end_at.strftime('%d/%m/%Y'),
             'external_code': self.external_code,
             'subject': self.subject.to_dict(),
+            'monday': self.monday,
+            'tuesday': self.tuesday,
+            'wednesday': self.wednesday,
+            'thursday': self.thursday,
+            'friday': self.friday,
+            'saturday': self.saturday,
+            'sunday': self.sunday,
             'students': students,
             'instructors': instructors
         }
@@ -415,6 +422,10 @@ class Lecture(models.Model):
     group = models.ForeignKey(Group)
     instructor = models.ForeignKey(Person)
 
+    def get_absences(self):
+        absences = Absence.objects.filter(lecture_id=self.pk).values('absence_number', 'student__external_code')
+        return list(absences)
+
     @staticmethod
     def update_or_create(instructor_id, group_id, date, workload):
         lecture = Lecture.objects.filter(
@@ -437,6 +448,15 @@ class Lecture(models.Model):
 
         return lecture
 
+    def to_dict(self):
+        return {
+            'date': self.date.strftime('%d/%m/%Y'),
+            'workload': self.workload,
+            'instructor_code': self.instructor.external_code,
+            'group_code': self.group.external_code,
+            'absences': self.get_absences()
+        }
+
     class Meta:
         db_table = 'lecture'
         verbose_name = 'aula'
@@ -452,6 +472,13 @@ class Absence(models.Model):
     @staticmethod
     def get_total(person, group):
         return Absence.objects.filter(student=person, lecture__group=group).aggregate(Sum('absence_number'))
+
+    def to_dict(self):
+        return {
+            'student': self.student.external_code,
+            'absence_number': self.absence_number,
+            'lecture': self.lecture_id
+        }
 
     def has_dispute(self):
         return Dispute.objects.filter(absence=self).exists()
