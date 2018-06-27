@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from api_mobile import views, student_views, professor_views
+from api_mobile.views import views, professor_views, student_views, admin_views
 
 router = routers.DefaultRouter()
 
@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'all-disputes-open', professor_views.get_open_disputes, name='get_open_disputes'),
     url(r'close-dispute', professor_views.close_dispute, name='close_dispute'),
 
-    url(r'get-admin-data', views.get_admin_data, name='get_admin_data'),
+    url(r'get-configs', admin_views.get_configs, name='get_configs'),
+    url(r'set-configs', admin_views.set_configs, name='set_configs'),
 ]

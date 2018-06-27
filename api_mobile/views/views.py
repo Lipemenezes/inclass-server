@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.http import JsonResponse
 
 # Create your views here.
@@ -10,7 +9,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 
-from inclass_server.models import Person, Institution, Group, Absence, Dispute
+from inclass_server.models import Institution
 
 
 @api_view(['POST'])
@@ -36,9 +35,3 @@ def obtain_auth_token(request, *args, **kwargs):
         return Response({
             'error': 'invalid credentials'
         })
-
-
-@api_view(http_method_names=['GET'])
-def get_admin_data(request):
-    a = 'teste'
-    return JsonResponse({'id': request.GET.get('professor_id')})

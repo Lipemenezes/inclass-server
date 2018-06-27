@@ -567,3 +567,13 @@ class Dispute(models.Model):
         db_table = 'dispute'
         verbose_name = 'contestação'
         verbose_name_plural = 'contestações'
+
+
+class SystemConfig(models.Model):
+    config = models.CharField(max_length=200, verbose_name='chave')
+    value = models.CharField(max_length=200, verbose_name='valor')
+
+    class Meta:
+        db_table = 'system_config'
+        verbose_name = 'configuração do sistemas'
+        verbose_name_plural = 'configurações do sistema'
