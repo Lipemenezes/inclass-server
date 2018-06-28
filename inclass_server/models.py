@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import uuid
 from datetime import datetime
 
 from django.contrib.auth.models import User
@@ -13,6 +14,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import Permission
+
+from api_mobile.utils.email_helper import send_email
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -221,6 +224,33 @@ class Person(models.Model):
             'first_name': self.user.first_name,
             'last_name': self.user.last_name
         }
+
+    @staticmethod
+    def reset_password_email(social_security_number):
+        try:
+            person = Person.objects.get(social_security_number=social_security_number)
+            new_password = str(uuid.uuid4().int)[:8]
+            person.user.set_password(new_password)
+            person.user.save()
+            person.is_new_password = True
+            person.save()
+
+            email_subject = 'Sua nova senha do InClass'
+            email_body = "Sua nova senha e {}".format(new_password)
+
+            email_login = SystemConfig.objects.get(config='email').value
+            email_password = SystemConfig.objects.get(config='email_pass').value
+
+            is_sent, error = send_email(
+                body=email_body,
+                subject=email_subject,
+                to=person.user.email,
+                email_login=email_login,
+                email_password=email_password
+            )
+            return is_sent
+        except:
+            return None
 
     @staticmethod
     def save_from_dict(person_dict):

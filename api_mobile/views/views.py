@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
+
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 
@@ -9,7 +11,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 
-from inclass_server.models import Institution
+from inclass_server.models import Institution, Person
 
 
 @api_view(['POST'])
@@ -35,3 +37,18 @@ def obtain_auth_token(request, *args, **kwargs):
         return Response({
             'error': 'invalid credentials'
         })
+
+
+@api_view(['POST'])
+@authentication_classes([])
+@permission_classes([])
+def reset_password_email(request, *args, **kwargs):
+    if not request.POST['social_security_number']:
+        return JsonResponse({'status': 'error', 'message': 'cpf required'}, status=400)
+
+    is_sent = Person.reset_password_email(request.POST['social_security_number'])
+
+    if is_sent:
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': ''}, status=400)

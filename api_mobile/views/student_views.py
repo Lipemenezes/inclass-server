@@ -21,6 +21,7 @@ def get_student_data(request):
                     'id': instructor.pk,
                     'name': instructor.get_full_name(),
                 })
+
             groups_list.append({
                 'group_id': group.pk,
                 'name': group.subject.name,
