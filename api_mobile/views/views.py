@@ -18,7 +18,8 @@ from inclass_server.models import Institution, Person
 @authentication_classes([])
 @permission_classes([])
 def obtain_auth_token(request, *args, **kwargs):
-    user = authenticate(username=request.POST['username'], password=request.POST['password'])
+    payload = json.loads(request.body)
+    user = authenticate(username=payload['username'], password=payload['password'])
     if user:
         token, created = Token.objects.get_or_create(user=user)
         return Response({
@@ -43,10 +44,12 @@ def obtain_auth_token(request, *args, **kwargs):
 @authentication_classes([])
 @permission_classes([])
 def reset_password_email(request, *args, **kwargs):
-    if not request.POST['social_security_number']:
+    payload = json.loads(request.body)
+
+    if not payload['social_security_number']:
         return JsonResponse({'status': 'error', 'message': 'cpf required'}, status=400)
 
-    is_sent = Person.reset_password_email(request.POST['social_security_number'])
+    is_sent = Person.reset_password_email(payload['social_security_number'])
 
     if is_sent:
         return JsonResponse({'status': 'success'})
