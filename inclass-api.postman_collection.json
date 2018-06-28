@@ -328,7 +328,7 @@
 					"description": "",
 					"item": [
 						{
-							"name": "list course",
+							"name": "list group",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -355,7 +355,7 @@
 							"response": []
 						},
 						{
-							"name": "create course",
+							"name": "create group",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -390,7 +390,7 @@
 							"response": []
 						},
 						{
-							"name": "delete course",
+							"name": "delete group",
 							"request": {
 								"method": "DELETE",
 								"header": [
@@ -734,7 +734,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"date\": \"2018-06-27\",\n\t\"group_id\": 1,\n\t\"workload\": 4,\n\t\"students_absences\": [\n\t\t{\n            \"absence_number\": 4,\n            \"student_id\": 1\n        },\n        {\n            \"absence_number\": 5,\n            \"student_id\": 2\n        },\n        {\n            \"absence_number\": 6,\n            \"student_id\": 3\n        }\t\n\t]\n}"
+									"raw": "{\n\t\"date\": \"2018-06-27\",\n\t\"group_id\": 1,\n\t\"workload\": 4,\n\t\"students_absences\": [\n\t\t{\n            \"absence_number\": 4,\n            \"student_id\": 1\n        },\n        {\n            \"absence_number\": 5,\n            \"student_id\": 2\n        },\n        {\n            \"absence_number\": 6,\n            \"student_id\": 3\n        }\n\t]\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8000/mobile-api/set-lecture",
@@ -970,7 +970,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"config\": \"min_allowed_attendance\",\n\t\"value\": \"75\"\n}"
+									"raw": "{\n\t\"config\": \"min_allowed_attendance\",\n\t\"value\": \"80\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8000/mobile-api/set-configs",
@@ -1005,23 +1005,15 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "123",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "abc123456",
-									"description": "",
-									"type": "text"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"123\",\n\t\"password\": \"14246109\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/mobile-api/auth/",
@@ -1034,6 +1026,46 @@
 								"mobile-api",
 								"auth",
 								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "reset password email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"social_security_number\": \"123555\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/mobile-api/reset-password-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"mobile-api",
+								"reset-password-email"
 							]
 						},
 						"description": ""
