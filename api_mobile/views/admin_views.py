@@ -11,9 +11,11 @@ from inclass_server.models import SystemConfig
 @api_view(http_method_names=['GET'])
 def get_configs(request):
     try:
-        configs = SystemConfig.objects.all().values('config', 'value')
-        configs = list(configs)
-        return JsonResponse({'status': 'success', 'configs': configs})
+        config = SystemConfig.objects.get(config='min_allowed_attendance')
+        config_dict = config.to_dict()
+        response_dict = {'status': 'success'}
+        response_dict[config_dict['config']] = config_dict['value']
+        return JsonResponse(response_dict)
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
