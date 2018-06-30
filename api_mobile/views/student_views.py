@@ -94,6 +94,7 @@ def get_disputes(request):
                 'initial_absence_number': dispute.initial_absence_number,
                 'final_absence_number': dispute.final_absence_number,
                 'professor_name': dispute.absence.lecture.instructor.get_full_name(),
+                'subject_name': dispute.absence.lecture.group.subject.name,
                 'status': dispute.status,
                 'message': dispute.message
             })
