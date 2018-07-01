@@ -100,7 +100,8 @@ def set_lecture(request):
             date=date
         )
 
-        for student_absence in payload['students_absences']:
+        students_absences = json.loads(payload['students_absences'])
+        for student_absence in students_absences:
             absence_number = student_absence['absence_number']
             if absence_number > 0:
                 Absence.update_or_create(
