@@ -553,14 +553,16 @@ class Absence(models.Model):
         ).first()
 
         if absence:
-            absence.absence_number = absence_number
+            absence.absence_number = absence_number or 0
             absence.save()
-        else:
+        elif absence_number and absence_number > 0:
             absence = Absence(
                 lecture_id=lecture_id,
                 student_id=student_id,
                 absence_number=absence_number
             ).save()
+        else:
+            absence = None
 
         return absence
 

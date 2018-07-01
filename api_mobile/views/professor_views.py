@@ -102,13 +102,12 @@ def set_lecture(request):
 
         students_absences = json.loads(payload['students_absences'])
         for student_absence in students_absences:
-            absence_number = student_absence['absence_number']
-            if absence_number > 0:
-                Absence.update_or_create(
-                    lecture_id=lecture.id,
-                    student_id=student_absence['student_id'],
-                    absence_number=absence_number
-                )
+            absence_number = student_absence.get('absence_number')
+            Absence.update_or_create(
+                lecture_id=lecture.id,
+                student_id=student_absence['student_id'],
+                absence_number=absence_number
+            )
 
         return JsonResponse({'status': "success"})
     except Exception as e:
