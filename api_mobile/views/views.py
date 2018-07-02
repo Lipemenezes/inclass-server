@@ -37,7 +37,7 @@ def obtain_auth_token(request, *args, **kwargs):
     else:
         return Response({
             'error': 'invalid credentials'
-        })
+        }, status=400)
 
 
 @api_view(['POST'])
@@ -55,3 +55,41 @@ def reset_password_email(request, *args, **kwargs):
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error', 'message': ''}, status=400)
+
+
+@api_view(['POST'])
+@authentication_classes([])
+@permission_classes([])
+def obtain_user_information(request, *args, **kwargs):
+    payload = json.loads(request.body)
+    try:
+        token = Token.objects.get(key=payload['token'])
+        user = token.user
+        return Response({
+            'token': token.key,
+            'is_student': user.has_perm('inclass_server.is_student'),
+            'is_professor': user.has_perm('inclass_server.is_professor'),
+            'is_admin': user.has_perm('inclass_server.is_admin'),
+            'name': user.person.get_full_name(),
+            'email': user.email,
+            'register': user.person.register,
+            'institution': Institution.objects.first().name,
+            'is_new_password': user.person.is_new_password,
+            'social_security_number': user.person.social_security_number
+        })
+    except:
+        return Response({
+            'error': 'Invalid token'
+        }, status=400)
+
+
+@api_view(['POST'])
+def change_user_password(request, *args, **kwargs):
+    payload = json.loads(request.body)
+    if not payload['password']:
+        return JsonResponse({'status': 'error', 'message': 'cpf required'}, status=400)
+    request.user.set_password(payload['password'])
+    request.user.save()
+    request.user.person.is_new_password = False;
+    request.user.person.save()
+    return JsonResponse({'status': 'success', 'message': 'password updated'})

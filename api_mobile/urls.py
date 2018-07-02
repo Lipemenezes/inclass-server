@@ -8,7 +8,9 @@ router = routers.DefaultRouter()
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^auth', views.obtain_auth_token, name='obtain_auth_token'),
+    url(r'^obtain-user-information', views.obtain_user_information, name='obtain_user_information'),
     url(r'reset-password-email', views.reset_password_email, name='reset_password_email'),
+    url(r'change-password', views.change_user_password, name='change_user_password'),
 
     url(r'get-student-data', student_views.get_student_data, name='get_student_data'),
     url(r'get-absences-for-lecture', student_views.get_absences_for_lecture, name='get_absences_for_lecture'),
