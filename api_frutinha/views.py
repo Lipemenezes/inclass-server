@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import json
 
+from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
@@ -24,7 +25,7 @@ def register(request):
 @api_view(http_method_names=['POST'])
 @authentication_classes([])
 @permission_classes([])
-def authenticate(request):
+def authenticate_user(request):
     payload = json.loads(request.body)
     user = authenticate(username=payload['username'], password=payload['password'])
     if user:
@@ -39,6 +40,6 @@ def authenticate(request):
 def fruits(request):
     return JsonResponse({
         'fruits': [
-            {'name': 'maçã'}, {'name': 'banana'}, {'name': 'pera'}, {'name': 'uva'}
+            {'name': 'maçã'}, {'name': 'banana'}, {'name': 'pera'}, {'name': 'uva'}, {'name': 'renato'}
         ]
     })

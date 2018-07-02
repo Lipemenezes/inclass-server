@@ -8,5 +8,5 @@ router = routers.DefaultRouter()
 urlpatterns = [
     url(r'^get-fruits/$', views.fruits, name='fruits'),
     url(r'^register/', views.register, name='register'),
-    url(r'^auth/', views.authenticate, name='authenticate'),
+    url(r'^auth/', views.authenticate_user, name='authenticate'),
 ]
