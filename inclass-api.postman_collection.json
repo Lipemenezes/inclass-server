@@ -224,7 +224,7 @@
 					"description": "",
 					"item": [
 						{
-							"name": "list course",
+							"name": "list subject",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -1013,7 +1013,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"123\",\n\t\"password\": \"14246109\"\n}"
+							"raw": "{\n\t\"username\": \"123\",\n\t\"password\": \"15241945\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/mobile-api/auth/",
@@ -1054,7 +1054,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"social_security_number\": \"123555\"\n}"
+							"raw": "{\n\t\"social_security_number\": \"456\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/mobile-api/reset-password-email",
