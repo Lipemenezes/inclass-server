@@ -3,7 +3,9 @@ import json
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from datetime import datetime
-from inclass_server.models import Lecture, Absence, Dispute, Group
+
+from api_mobile.utils.email_helper import send_absence_email_async
+from inclass_server.models import Lecture, Absence, Dispute, Group, SystemConfig
 
 
 @api_view(http_method_names=['GET'])
@@ -105,13 +107,17 @@ def set_lecture(request):
         except:
             students_absences = payload['students_absences']
 
+        email = SystemConfig.objects.get(config='email').value
+        email_pass = SystemConfig.objects.get(config='email_pass').value
+
         for student_absence in students_absences:
             absence_number = student_absence.get('absence_number')
-            Absence.update_or_create(
+            absence = Absence.update_or_create(
                 lecture=lecture,
                 student_id=student_absence['student_id'],
                 absence_number=absence_number
             )
+            send_absence_email_async(absence, email, email_pass)
 
         return JsonResponse({'status': "success"})
     except Exception as e:

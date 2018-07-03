@@ -15,7 +15,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import Permission
 
-from api_mobile.utils.email_helper import send_email, send_absence_email
+from api_mobile.utils.email_helper import send_email
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -563,13 +563,6 @@ class Absence(models.Model):
             ).save()
         else:
             absence = None
-
-        if absence:
-            send_absence_email(
-                absence,
-                SystemConfig.objects.filter(config='email').first().value,
-                SystemConfig.objects.filter(config='email_pass').first().value
-            )
 
         return absence
 
