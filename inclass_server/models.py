@@ -15,7 +15,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import Permission
 
-from api_mobile.utils.email_helper import send_email
+from api_mobile.utils.email_helper import send_email, send_absence_email
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -546,9 +546,9 @@ class Absence(models.Model):
         return Dispute.objects.filter(absence=self).exists()
 
     @staticmethod
-    def update_or_create(lecture_id, student_id, absence_number):
+    def update_or_create(lecture, student_id, absence_number):
         absence = Absence.objects.filter(
-            lecture_id=lecture_id,
+            lecture_id=lecture.pk,
             student_id=student_id,
         ).first()
 
@@ -557,12 +557,19 @@ class Absence(models.Model):
             absence.save()
         elif absence_number and absence_number > 0:
             absence = Absence(
-                lecture_id=lecture_id,
+                lecture_id=lecture.pk,
                 student_id=student_id,
                 absence_number=absence_number
             ).save()
         else:
             absence = None
+
+        if absence:
+            send_absence_email(
+                absence,
+                SystemConfig.objects.filter(config='email').first().value,
+                SystemConfig.objects.filter(config='email_pass').first().value
+            )
 
         return absence
 

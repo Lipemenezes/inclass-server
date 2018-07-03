@@ -100,11 +100,15 @@ def set_lecture(request):
             date=date
         )
 
-        students_absences = json.loads(payload['students_absences'])
+        try:
+            students_absences = json.loads(payload['students_absences'])
+        except:
+            students_absences = payload['students_absences']
+
         for student_absence in students_absences:
             absence_number = student_absence.get('absence_number')
             Absence.update_or_create(
-                lecture_id=lecture.id,
+                lecture=lecture,
                 student_id=student_absence['student_id'],
                 absence_number=absence_number
             )
