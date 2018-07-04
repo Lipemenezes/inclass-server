@@ -28,36 +28,18 @@ CREATE TABLE IF NOT EXISTS `absence` (
   KEY `absence_student_id_ee9ee8fd_fk_person_id` (`student_id`),
   CONSTRAINT `absence_lecture_id_786c105f_fk_lecture_id` FOREIGN KEY (`lecture_id`) REFERENCES `lecture` (`id`),
   CONSTRAINT `absence_student_id_ee9ee8fd_fk_person_id` FOREIGN KEY (`student_id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.absence: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `absence` DISABLE KEYS */;
 INSERT INTO `absence` (`id`, `absence_number`, `is_deleted`, `lecture_id`, `student_id`) VALUES
-	(1, 3, 0, 1, 8),
-	(2, 3, 0, 1, 4),
-	(3, 2, 0, 1, 5),
-	(4, 3, 0, 1, 6),
-	(5, 4, 0, 1, 7),
-	(6, 4, 0, 2, 8),
-	(7, 4, 0, 2, 4),
-	(8, 4, 0, 2, 5),
-	(9, 4, 0, 2, 6),
-	(10, 4, 0, 2, 7),
-	(11, 4, 0, 3, 8),
-	(12, 4, 0, 3, 4),
-	(13, 4, 0, 3, 5),
-	(14, 4, 0, 3, 6),
-	(15, 4, 0, 3, 7),
-	(16, 4, 0, 4, 8),
-	(17, 2, 0, 4, 4),
-	(18, 3, 0, 4, 5),
-	(19, 3, 0, 4, 6),
-	(20, 2, 0, 4, 7),
-	(21, 4, 0, 5, 8),
-	(22, 3, 0, 5, 4),
-	(23, 2, 0, 5, 5),
-	(24, 1, 0, 5, 6),
-	(25, 2, 0, 5, 7);
+	(1, 4, 0, 1, 4),
+	(2, 4, 0, 1, 5),
+	(3, 4, 0, 1, 6),
+	(4, 4, 0, 1, 7),
+	(5, 4, 0, 1, 8),
+	(6, 4, 0, 2, 5),
+	(7, 4, 0, 3, 5);
 /*!40000 ALTER TABLE `absence` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.address
@@ -96,14 +78,19 @@ CREATE TABLE IF NOT EXISTS `authtoken_token` (
 -- Copiando dados para a tabela inclass.authtoken_token: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `authtoken_token` DISABLE KEYS */;
 INSERT INTO `authtoken_token` (`key`, `created`, `user_id`) VALUES
-	('0d3cdcc246e2b3835c9fb53b5bc6bd66529633f9', '2018-07-03 22:44:46.845000', 4),
-	('380566518cfc1e3b4d6736339abd9a93a603f36c', '2018-07-03 22:44:47.542000', 7),
-	('5094a7f0b6912588263674810b2ef7c6221b59ef', '2018-07-03 22:44:47.066000', 5),
-	('51b1bce85d404447bb8bf83bf725709819b581e9', '2018-07-03 22:39:53.248000', 1),
-	('548e3deece6ec5ac952155dc039531a22c0f5ff7', '2018-07-03 22:44:46.425000', 3),
-	('5dc4854ad6eb9cf3bc00dc00cfa6206a0ad45559', '2018-07-03 22:44:47.310000', 6),
-	('8bbf233d552cb60234d76edb0983b1cd3d89daa2', '2018-07-03 22:44:47.752000', 8),
-	('b4087ab1f5dd3cb6e87d4f8e8314d91995ef362b', '2018-07-03 22:44:45.727000', 2);
+	('00d358b7bdf8973fcf4dabaa1fc45200da2bf865', '2018-07-04 18:27:22.139000', 4),
+	('03c861d284fff16d0c51b4534c51adb0b327c239', '2018-07-04 18:27:22.891000', 7),
+	('18329aaf8d76968ce90f3c225c5b0ea46651f734', '2018-07-04 18:27:22.475000', 5),
+	('41eed3069bbb15eac4e0e35102c62a7314691874', '2018-07-04 18:27:24.012000', 11),
+	('5629b2d6072dc2b07ef54a4d7873f26f0bafac86', '2018-07-04 18:27:24.196000', 12),
+	('57d9b9f34bf2ed59ead878822821eacd4a70fd66', '2018-07-04 18:27:22.696000', 6),
+	('5ef4535d7786d6f43c266980ac170e9b69992de9', '2018-07-04 18:25:51.661000', 1),
+	('67557bab6d96d31dce3b4954fca63001d7d736f9', '2018-07-04 18:27:23.736000', 10),
+	('74ec8169497286f2baaa5ffff7d35ba4aa5b9018', '2018-07-04 18:27:20.950000', 2),
+	('9e6deaadec66eb46d5aec3d2637eb622ad4ae654', '2018-07-04 18:27:23.415000', 9),
+	('b08fe037f546134319fd705e81456913b5ed89cc', '2018-07-04 18:27:21.513000', 3),
+	('dd127f7e9a521c72a58e7dd0747206f9c227734a', '2018-07-04 18:27:24.400000', 13),
+	('e4397cd2dc38de836276d32768f1d53227f1abc7', '2018-07-04 18:27:23.106000', 8);
 /*!40000 ALTER TABLE `authtoken_token` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.auth_group
@@ -219,19 +206,24 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.auth_user: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-	(1, 'pbkdf2_sha256$36000$QLGkKFNmmiDb$T+pWyfEAde9uu7d3FDfrEveUL8DKbncXQvw01WjRqfc=', NULL, 1, 'admin', 'Felipe', 'Admin', 'lipe.menezes@live.com', 1, 1, '2018-07-03 22:39:53.048000'),
-	(2, 'pbkdf2_sha256$36000$FYNLbc6QJWKx$XgdVyjZp1zrcLoNAD1RYKkgkEfqUZrxf2vqMbvTnyDE=', NULL, 0, '123', 'Vilmar', 'Pereira', 'vilmar.junior@edu.sc.senac.br', 0, 1, '2018-07-03 22:44:45.629000'),
-	(3, 'pbkdf2_sha256$36000$qKz4nJTC8qXq$1vSFA01/TrmEdPgIIgoZve33ExgvLdwe0kFytnlFryc=', NULL, 0, '456', 'Luciano', 'Kogut', 'luciano.kogut@sc.senac.br', 0, 1, '2018-07-03 22:44:46.317000'),
-	(4, 'pbkdf2_sha256$36000$G8TPCjuaQLhR$BN3elsMKW/zc2tFDiNd7o4MNK6miSzEYVtXOWXukTB8=', NULL, 0, '100', 'Felipe', 'Menezes', 'lipe.menezes@live.com', 0, 1, '2018-07-03 22:44:46.770000'),
-	(5, 'pbkdf2_sha256$36000$A2pPpnrYBYYh$p9L8tiQshrYaaJqt1MMR/rLTOWfLXBX/F/GpbWxAz2U=', NULL, 0, '101', 'Maicon', 'Queiroz', 'maiconqdev@gmail.com', 0, 1, '2018-07-03 22:44:47.001000'),
-	(6, 'pbkdf2_sha256$36000$dHd1YHHHnUpX$ixYAl/7h8YQ2i80JMcKy/Ly/hzWpO79+cHUYoqLa5TI=', NULL, 0, '102', 'Bruno', 'Gehrke', 'brunovitorr@gmail.com', 0, 1, '2018-07-03 22:44:47.226000'),
-	(7, 'pbkdf2_sha256$36000$AVnUaTYN0zCq$liTYBD2nS3IpsgNtakWIza7XbZLPMANcQ808xf1BwZk=', NULL, 0, '103', 'Guilherme', 'Rodrigues', 'guilherme121225@gmail.com', 0, 1, '2018-07-03 22:44:47.478000'),
-	(8, 'pbkdf2_sha256$36000$EVHrmfz4jtym$vmHNHPoOfvkFWf11fsK27DfLs2IJeyRn8GbDI6L0O6I=', NULL, 0, '104', 'Ana', 'Luiza Negri', 'analuizanegri@gmail.com', 0, 1, '2018-07-03 22:44:47.677000');
+	(1, 'pbkdf2_sha256$36000$6nCTwEQaS6s9$gE9uPqMDhRPgLnLtXmIeyV3uxnn0Zk1Iju+AWU0VUQ4=', NULL, 1, 'admin', 'AD', 'MIN', 'admin@live.com', 1, 1, '2018-07-04 18:25:51.558000'),
+	(2, 'pbkdf2_sha256$36000$U7EB1FqOQd3R$eOxvqRDWw8RJUhbrPJui9kxw2czalei8AvtpLeZd9z8=', NULL, 0, '123', 'Vilmar', 'Pereira', 'vilmar.junior@edu.sc.senac.br', 0, 1, '2018-07-04 18:27:20.837000'),
+	(3, 'pbkdf2_sha256$36000$z2Ziibjbmx2Z$VxPdkhVlCmwOPfmqwVm5Vvs/tFLNA6dD2rd9qZnlfF8=', NULL, 0, '12345678912', 'Luciano', 'Kogut', 'luciano.kogut@sc.senac.br', 0, 1, '2018-07-04 18:27:21.413000'),
+	(4, 'pbkdf2_sha256$36000$3Uk4FFvTyGYF$beGBgbkMs8qdYBPHv9KYrsifp3BD7e3fygvdiOzs+I0=', NULL, 0, '100', 'Felipe', 'Menezes', 'lipe.menezes@live.com', 0, 1, '2018-07-04 18:27:22.056000'),
+	(5, 'pbkdf2_sha256$36000$prl1v0BleUYZ$M6ihCOrbDTjxLk29f8mIAtU24CNKMuOeDqlE7SRnLUA=', NULL, 0, '09174106961', 'Maicon', 'Queiroz', 'maiconqdev@gmail.com', 0, 1, '2018-07-04 18:27:22.386000'),
+	(6, 'pbkdf2_sha256$36000$gAJoRLG9jkHM$VAp3oBpA/HXh8WrvzC9WCReYbJD6P0O4+Aam5H6pPu4=', NULL, 0, '102', 'Bruno', 'Gehrke', 'brunovitorr@gmail.com', 0, 1, '2018-07-04 18:27:22.610000'),
+	(7, 'pbkdf2_sha256$36000$3vyEXuXwuX36$zJfCwCVctyyvBR7pQJ8Aoi9hxrnAI7w4gOnVCwb2SDA=', NULL, 0, '103', 'Guilherme', 'Rodrigues', 'guilherme121225@gmail.com', 0, 1, '2018-07-04 18:27:22.810000'),
+	(8, 'pbkdf2_sha256$36000$Zrcc00GOKJQn$4zr+V/dTNDFId+38bS7AfrgIL26ojP3wbwoC0ccwRlQ=', NULL, 0, '104', 'Ana', 'Luiza Negri', 'analuizanegri@gmail.com', 0, 1, '2018-07-04 18:27:23.027000'),
+	(9, 'pbkdf2_sha256$36000$o4DOuffeRTxu$IX6Py1gdTyoHO9n0ReC2/ezzl47zgFLGFaivgl2L26I=', NULL, 0, '105', 'Luciano', 'Kogut (Aluno)', 'luciano.kogut@sc.senac.br', 0, 1, '2018-07-04 18:27:23.327000'),
+	(10, 'pbkdf2_sha256$36000$Ib5NAtUa2Emd$ReHF5MRut1vKIflB3EfqGmSMP5wu4veWh70lsp9WhT0=', NULL, 0, '106', 'Vilmar', 'Pereira (Aluno)', 'vilmar.junior@edu.sc.senac.br', 0, 1, '2018-07-04 18:27:23.617000'),
+	(11, 'pbkdf2_sha256$36000$8SqP8Pw3pATZ$/PlD3CV39X8HsQu+NKuJvDaZwqXgIOBaur7uDe21WvE=', NULL, 0, '107', 'Maiara', 'Cancian', 'maiara.cancian@gmail.com', 0, 1, '2018-07-04 18:27:23.904000'),
+	(12, 'pbkdf2_sha256$36000$AKr7uGFGvxot$kQrPF1+QVtpKbJA15BPVizb3uPlqiANPLRqabEg19fk=', NULL, 0, '108', 'Renato', 'Paranagua', 'renato.paranagua@hotmail.com', 0, 1, '2018-07-04 18:27:24.137000'),
+	(13, 'pbkdf2_sha256$36000$wLW9sEkObkXi$PhVKBBCdfpOS/yOGHT6Top+0d6B93Q6qTqoexcN0SeY=', NULL, 0, '109', 'Thais', 'Arnoni', 'thais.arnoni@sc.senac.br', 0, 1, '2018-07-04 18:27:24.321000');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.auth_user_groups
@@ -260,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
   KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
   CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.auth_user_user_permissions: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
@@ -273,7 +265,12 @@ INSERT INTO `auth_user_user_permissions` (`id`, `user_id`, `permission_id`) VALU
 	(6, 5, 35),
 	(7, 6, 35),
 	(8, 7, 35),
-	(9, 8, 35);
+	(9, 8, 35),
+	(10, 9, 35),
+	(11, 10, 35),
+	(12, 11, 35),
+	(13, 12, 35),
+	(14, 13, 35);
 /*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.course
@@ -309,15 +306,12 @@ CREATE TABLE IF NOT EXISTS `dispute` (
   PRIMARY KEY (`id`),
   KEY `dispute_absence_id_e394fe69_fk_absence_id` (`absence_id`),
   CONSTRAINT `dispute_absence_id_e394fe69_fk_absence_id` FOREIGN KEY (`absence_id`) REFERENCES `absence` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.dispute: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `dispute` DISABLE KEYS */;
 INSERT INTO `dispute` (`id`, `message`, `status`, `initial_absence_number`, `final_absence_number`, `is_deleted`, `absence_id`) VALUES
-	(1, 'Professor, nesse dia tive apenas uma falta, pois cheguei as 08:20! Pode arrumar, por favor?', 0, 3, 0, 0, 2),
-	(2, 'Professor, ja que deu essa falta por engano, ajuda na banca ai rsrs', 1, 4, 2, 0, 17),
-	(3, 'Professor, eu so tive duas faltas!', 2, 4, 4, 0, 12),
-	(4, ':(', 0, 4, 4, 0, 7);
+	(1, 'Professor, cheguei apenas 10m atrasado, pode deixar apenas uma falta? @', 2, 4, 4, 0, 2);
 /*!40000 ALTER TABLE `dispute` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.django_admin_log
@@ -384,27 +378,27 @@ CREATE TABLE IF NOT EXISTS `django_migrations` (
 -- Copiando dados para a tabela inclass.django_migrations: ~21 rows (aproximadamente)
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-	(1, 'contenttypes', '0001_initial', '2018-07-03 22:32:33.582000'),
-	(2, 'auth', '0001_initial', '2018-07-03 22:32:42.913000'),
-	(3, 'admin', '0001_initial', '2018-07-03 22:32:44.748000'),
-	(4, 'admin', '0002_logentry_remove_auto_add', '2018-07-03 22:32:44.802000'),
-	(5, 'contenttypes', '0002_remove_content_type_name', '2018-07-03 22:32:46.290000'),
-	(6, 'auth', '0002_alter_permission_name_max_length', '2018-07-03 22:32:46.433000'),
-	(7, 'auth', '0003_alter_user_email_max_length', '2018-07-03 22:32:46.589000'),
-	(8, 'auth', '0004_alter_user_username_opts', '2018-07-03 22:32:46.638000'),
-	(9, 'auth', '0005_alter_user_last_login_null', '2018-07-03 22:32:47.555000'),
-	(10, 'auth', '0006_require_contenttypes_0002', '2018-07-03 22:32:47.624000'),
-	(11, 'auth', '0007_alter_validators_add_error_messages', '2018-07-03 22:32:47.723000'),
-	(12, 'auth', '0008_alter_user_username_max_length', '2018-07-03 22:32:48.037000'),
-	(13, 'authtoken', '0001_initial', '2018-07-03 22:32:49.582000'),
-	(14, 'authtoken', '0002_auto_20160226_1747', '2018-07-03 22:32:50.489000'),
-	(15, 'inclass_server', '0001_initial', '2018-07-03 22:33:16.952000'),
-	(16, 'inclass_server', '0002_auto_20180626_2037', '2018-07-03 22:33:20.135000'),
-	(17, 'inclass_server', '0003_auto_20180626_2343', '2018-07-03 22:33:24.576000'),
-	(18, 'inclass_server', '0004_group_sunday', '2018-07-03 22:33:25.060000'),
-	(19, 'inclass_server', '0005_group_course', '2018-07-03 22:33:27.675000'),
-	(20, 'inclass_server', '0006_systemconfig', '2018-07-03 22:33:28.846000'),
-	(21, 'sessions', '0001_initial', '2018-07-03 22:33:31.435000');
+	(1, 'contenttypes', '0001_initial', '2018-07-04 18:23:13.153000'),
+	(2, 'auth', '0001_initial', '2018-07-04 18:23:30.071000'),
+	(3, 'admin', '0001_initial', '2018-07-04 18:23:33.302000'),
+	(4, 'admin', '0002_logentry_remove_auto_add', '2018-07-04 18:23:33.364000'),
+	(5, 'contenttypes', '0002_remove_content_type_name', '2018-07-04 18:23:35.184000'),
+	(6, 'auth', '0002_alter_permission_name_max_length', '2018-07-04 18:23:35.431000'),
+	(7, 'auth', '0003_alter_user_email_max_length', '2018-07-04 18:23:35.734000'),
+	(8, 'auth', '0004_alter_user_username_opts', '2018-07-04 18:23:35.797000'),
+	(9, 'auth', '0005_alter_user_last_login_null', '2018-07-04 18:23:36.590000'),
+	(10, 'auth', '0006_require_contenttypes_0002', '2018-07-04 18:23:36.738000'),
+	(11, 'auth', '0007_alter_validators_add_error_messages', '2018-07-04 18:23:36.887000'),
+	(12, 'auth', '0008_alter_user_username_max_length', '2018-07-04 18:23:37.392000'),
+	(13, 'authtoken', '0001_initial', '2018-07-04 18:23:38.772000'),
+	(14, 'authtoken', '0002_auto_20160226_1747', '2018-07-04 18:23:40.010000'),
+	(15, 'inclass_server', '0001_initial', '2018-07-04 18:24:09.241000'),
+	(16, 'inclass_server', '0002_auto_20180626_2037', '2018-07-04 18:24:12.484000'),
+	(17, 'inclass_server', '0003_auto_20180626_2343', '2018-07-04 18:24:16.288000'),
+	(18, 'inclass_server', '0004_group_sunday', '2018-07-04 18:24:16.995000'),
+	(19, 'inclass_server', '0005_group_course', '2018-07-04 18:24:19.530000'),
+	(20, 'inclass_server', '0006_systemconfig', '2018-07-04 18:24:19.831000'),
+	(21, 'sessions', '0001_initial', '2018-07-04 18:24:20.453000');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.django_session
@@ -469,8 +463,8 @@ CREATE TABLE IF NOT EXISTS `group_instructors` (
 /*!40000 ALTER TABLE `group_instructors` DISABLE KEYS */;
 INSERT INTO `group_instructors` (`id`, `group_id`, `person_id`) VALUES
 	(1, 1, 2),
-	(2, 1, 3),
-	(3, 2, 2),
+	(3, 1, 3),
+	(2, 2, 2),
 	(4, 2, 3);
 /*!40000 ALTER TABLE `group_instructors` ENABLE KEYS */;
 
@@ -484,21 +478,31 @@ CREATE TABLE IF NOT EXISTS `group_students` (
   KEY `group_students_person_id_dbf2a2f4_fk_person_id` (`person_id`),
   CONSTRAINT `group_students_group_id_e69a4cbc_fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
   CONSTRAINT `group_students_person_id_dbf2a2f4_fk_person_id` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.group_students: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `group_students` DISABLE KEYS */;
 INSERT INTO `group_students` (`id`, `group_id`, `person_id`) VALUES
-	(2, 1, 4),
-	(3, 1, 5),
-	(4, 1, 6),
-	(5, 1, 7),
-	(1, 1, 8),
-	(7, 2, 4),
-	(8, 2, 5),
-	(9, 2, 6),
-	(10, 2, 7),
-	(6, 2, 8);
+	(1, 1, 4),
+	(19, 1, 5),
+	(2, 1, 6),
+	(3, 1, 7),
+	(4, 1, 8),
+	(5, 1, 9),
+	(6, 1, 10),
+	(7, 1, 11),
+	(8, 1, 12),
+	(9, 1, 13),
+	(10, 2, 4),
+	(20, 2, 5),
+	(11, 2, 6),
+	(12, 2, 7),
+	(13, 2, 8),
+	(14, 2, 9),
+	(15, 2, 10),
+	(16, 2, 11),
+	(17, 2, 12),
+	(18, 2, 13);
 /*!40000 ALTER TABLE `group_students` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.institution
@@ -530,16 +534,14 @@ CREATE TABLE IF NOT EXISTS `lecture` (
   KEY `lecture_instructor_id_2cf63940_fk_person_id` (`instructor_id`),
   CONSTRAINT `lecture_group_id_cf41a597_fk_group_id` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
   CONSTRAINT `lecture_instructor_id_2cf63940_fk_person_id` FOREIGN KEY (`instructor_id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.lecture: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `lecture` DISABLE KEYS */;
 INSERT INTO `lecture` (`id`, `date`, `workload`, `is_deleted`, `group_id`, `instructor_id`) VALUES
-	(1, '2018-07-03', 4, 0, 1, 2),
-	(2, '2018-07-04', 4, 0, 1, 2),
-	(3, '2018-07-03', 4, 0, 2, 2),
-	(4, '2018-07-05', 4, 0, 2, 2),
-	(5, '2018-07-02', 4, 0, 1, 2);
+	(1, '2018-07-04', 4, 0, 1, 3),
+	(2, '2018-07-05', 4, 0, 1, 3),
+	(3, '2018-07-06', 4, 0, 1, 3);
 /*!40000 ALTER TABLE `lecture` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.person
@@ -554,19 +556,24 @@ CREATE TABLE IF NOT EXISTS `person` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `person_user_id_1e34abe8_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela inclass.person: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
 INSERT INTO `person` (`id`, `social_security_number`, `register`, `external_code`, `is_deleted`, `user_id`, `is_new_password`) VALUES
 	(1, 'admin', 'admin', 'admin', 0, 1, 0),
 	(2, '123', '26062018210635', '123', 0, 2, 0),
-	(3, '456', '26062018210123', '456', 0, 3, 0),
+	(3, '12345678912', '26062018210123', '12345678912', 0, 3, 0),
 	(4, '100', '26062018210635', '100', 0, 4, 0),
-	(5, '101', '26062018210635', '101', 0, 5, 1),
-	(6, '102', '26062018210635', '102', 0, 6, 1),
-	(7, '103', '26062018210635', '103', 0, 7, 1),
-	(8, '104', '26062018210635', '104', 0, 8, 1);
+	(5, '09174106961', '26062018210635', '09174106961', 0, 5, 0),
+	(6, '102', '26062018210635', '102', 0, 6, 0),
+	(7, '103', '26062018210635', '103', 0, 7, 0),
+	(8, '104', '26062018210635', '104', 0, 8, 0),
+	(9, '105', '26062018210635', '105', 0, 9, 0),
+	(10, '106', '26062018210635', '106', 0, 10, 0),
+	(11, '107', '26062018210635', '107', 0, 11, 0),
+	(12, '108', '26062018210635', '108', 0, 12, 0),
+	(13, '109', '26062018210635', '109', 0, 13, 0);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela inclass.subject
@@ -619,10 +626,10 @@ CREATE TABLE IF NOT EXISTS `system_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela inclass.system_config: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela inclass.system_config: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `system_config` DISABLE KEYS */;
 INSERT INTO `system_config` (`id`, `config`, `value`) VALUES
-	(1, 'min_allowed_attendance', '75'),
+	(1, 'min_allowed_attendance', '90'),
 	(2, 'email', 'naorespondainclass@gmail.com '),
 	(3, 'email_pass', '#Abc123456');
 /*!40000 ALTER TABLE `system_config` ENABLE KEYS */;
