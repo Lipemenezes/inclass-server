@@ -450,7 +450,7 @@ class Group(models.Model):
             group.students.add(*students_to_add)
 
         if group_dict.get('instructor_code_remove'):
-            instructors = Person.objects.filter(external_code__in=group_dict['student_code_remove'])
+            instructors = Person.objects.filter(external_code__in=group_dict['instructor_code_remove'])
             group.instructors.remove(*instructors)
 
         if group_dict.get('student_code_remove'):
