@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import uuid
+from __builtin__ import unicode
 from datetime import datetime
 
 from django.contrib.auth.models import User
@@ -236,7 +237,7 @@ class Person(models.Model):
             person.save()
 
             email_subject = 'Sua nova senha do InClass'
-            email_body = "Sua nova senha e {}".format(new_password)
+            email_body = unicode("Sua nova senha: {}").format(new_password)
 
             email_login = SystemConfig.objects.get(config='email').value
             email_password = SystemConfig.objects.get(config='email_pass').value
