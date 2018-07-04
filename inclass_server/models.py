@@ -589,6 +589,8 @@ class Dispute(models.Model):
         self.status = Dispute.APPROVED
         self.final_absence_number = final_absence_number
         self.save()
+        self.absence.absence_number = final_absence_number
+        self.absence.save()
 
     def refuse(self):
         self.status = Dispute.REFUSED
