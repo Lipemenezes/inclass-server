@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^inst-api/', include('api_inst.urls')),
     url(r'^mobile-api/', include('api_mobile.urls')),
     url(r'^api-frutinha/', include('api_frutinha.urls')),
+    url(r'^api-joguinhos/', include('api_joguinhos.urls')),
     url(r'^admin/', admin.site.urls),
 ]

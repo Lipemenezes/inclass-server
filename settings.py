@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'inclass_server',
     'api_inst',
     'api_mobile',
+    'api_frutinha',
+    'api_joguinhos',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
