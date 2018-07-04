@@ -443,7 +443,7 @@
 								],
 								"body": {},
 								"url": {
-									"raw": "http://localhost:8000/inst-api/absence?lecture_date=2018-06-27&group_external_code=0_ADS_20181",
+									"raw": "http://localhost:8000/inst-api/absence?lecture_date=2018-07-03&group_external_code=0_ADS_20181_WEB",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -456,12 +456,12 @@
 									"query": [
 										{
 											"key": "lecture_date",
-											"value": "2018-06-27",
+											"value": "2018-07-03",
 											"equals": true
 										},
 										{
 											"key": "group_external_code",
-											"value": "0_ADS_20181",
+											"value": "0_ADS_20181_WEB",
 											"equals": true
 										}
 									]
