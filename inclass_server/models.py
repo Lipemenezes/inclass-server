@@ -561,7 +561,8 @@ class Absence(models.Model):
                 lecture_id=lecture.pk,
                 student_id=student_id,
                 absence_number=absence_number
-            ).save()
+            )
+            absence.save()
         else:
             absence = None
 
