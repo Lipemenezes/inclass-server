@@ -48,22 +48,40 @@ def joguinhos(request):
                     'ano': 2010
                 },
                 {
-                    'id': 1,
+                    'id': 2,
                     'nome': 'Grand Theft Auto V',
                     'desenvolvedora': 'Rockstar Games',
                     'ano': 2013
                 },
                 {
-                    'id': 1,
+                    'id': 3,
                     'nome': 'The Last of Us',
                     'desenvolvedora': 'Sony Computer Entertainment',
                     'ano': 2013
                 },
                 {
-                    'id': 1,
+                    'id': 4,
                     'nome': 'Red  Dead Redemption',
                     'desenvolvedora': 'Rockstar San Diego',
                     'ano': 2010
+                },
+                {
+                    'id': 5,
+                    'nome': 'Resident Evil 8',
+                    'desenvolvedora': 'No idea',
+                    'ano': 2021
+                },
+                {
+                    'id': 6,
+                    'nome': 'Red  Dead Redemption 2',
+                    'desenvolvedora': 'Rockstar Games',
+                    'ano': 2018
+                },
+                {
+                    'id': 7,
+                    'nome': 'GTA VI',
+                    'desenvolvedora': 'Rockstar Games',
+                    'ano': 2023
                 },
             ]
         }
